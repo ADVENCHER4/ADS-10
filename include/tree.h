@@ -15,7 +15,7 @@ class Tree {
  private:
     Node* root;
     std::vector<std::vector<char>> perms;
-    void insert( Node* root, const std::vector<char>& vec) {
+    void insert(Node* root, const std::vector<char>& vec) {
         for (char c : vec) {
             Node* tmp = new Node;
             tmp->val = c;
@@ -27,12 +27,11 @@ class Tree {
         }
     }
     void findPerms(Node* root, std::vector<char> vec) {
-        if(!root->isRoot)
+        if (!root->isRoot)
             vec.push_back(root->val);
         if (root->pointers.empty()) {
             perms.push_back(vec);
-        }
-        else {
+        } else {
             for (Node* child : root->pointers) {
                 findPerms(child, vec);
             }
@@ -40,7 +39,7 @@ class Tree {
     }
 
  public:
-    Tree(const std::vector<char>& vec) {
+    explicit Tree(const std::vector<char>& vec) {
         root = new Node;
         root->isRoot = true;
         insert(root, vec);
